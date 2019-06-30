@@ -1,6 +1,8 @@
 #!/bin/bash
 
 setup_mac_ux () {
+  osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
   # Set standby delay to 24 hours (default is 1 hour)
   sudo pmset -a standbydelay 86400
 
@@ -8,7 +10,7 @@ setup_mac_ux () {
   sudo nvram SystemAudioVolume=" "
 
   # Disable transparency in the menu bar and elsewhere on Yosemite
-  defaults write com.apple.universalaccess reduceTransparency -bool true
+  sudo defaults write com.apple.universalaccess reduceTransparency -bool true
 
   # Disable the over-the-top focus ring animation
   defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false

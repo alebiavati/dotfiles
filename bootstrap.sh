@@ -164,7 +164,7 @@ setup_iterm2
 p "XCode"
 
 # get utility scripts
-source ./scripts/xcode.sh
+source ./macos/xcode.sh
 
 # Setup xcode
 setup_xcode
