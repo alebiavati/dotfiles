@@ -1,7 +1,7 @@
 #!/bin/bash
 
 setup_mac_ux () {
-  osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+  sudo defaults write /Library/Preferences/.GlobalPreferences.plist _HIEnableThemeSwitchHotKey -bool true
 
   # Set standby delay to 24 hours (default is 1 hour)
   sudo pmset -a standbydelay 86400

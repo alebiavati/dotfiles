@@ -1,6 +1,7 @@
 #!/bin/bash
 
-setup_mac_ssd () {
+function setup_mac_ssd {
+  # TODO: the following code dowsn't work
   # # Disable hibernation (speeds up entering sleep mode)
   # sudo pmset -a hibernatemode 0
 
@@ -10,4 +11,5 @@ setup_mac_ssd () {
   # sudo touch /private/var/vm/sleepimage
   # # …and make sure it can’t be rewritten
   # sudo chflags uchg /private/var/vm/sleepimage
+  print_success "Cannot remove sleepimage but that's a known issue, moving on"
 }
