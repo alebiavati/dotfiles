@@ -5,14 +5,13 @@
 * If you're starting off consider forking [mathias](https://github.com/mathiasbynens/dotfiles/) or [alrra](https://github.com/alrra/dotfiles/). [paulmillr](https://github.com/paulmillr/dotfiles) and [gf3](https://github.com/gf3/dotfiles) also have great setups
 
 ## Setup
-#### installing & using
+#### installing
 
-* fork this to your own acct
-* clone that repo
-* read and run parts of `setup-a-new-machine.sh`
-* read and run `symlink-setup.sh`
-  * git config needs attention, read the notes.
-* use it. yay!
+Run the following command for quick install from a Bash shell:
+
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/alebiavati/dotfiles/master/bootstrap.sh)"
+```
 
 #### maintenance
 
