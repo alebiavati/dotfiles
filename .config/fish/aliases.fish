@@ -31,6 +31,3 @@ alias docker-rm-all-volumes="docker volume rm (docker volume ls -f dangling=true
 
 # Verdaccio
 alias verdaccio="docker run -d -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio"
-
-# Tmux
-alias t="tmux attach || tmux new -s main"
