@@ -401,6 +401,8 @@ IFS=$OLDIFS
 setup_dock_apps "$DOCK_APPS_CSV"
 setup_dock_folders "$DOCK_FOLDERS_CSV"
 
+# Clear icon cache
+clear_icon_cache
 
 #######################################################
 # RESTART APPS
@@ -428,7 +430,7 @@ for app in "Activity Monitor" \
 	"Tweetbot" \
 	"Twitter" \
 	"iCal"; do
-	killall "$app" &> /dev/null || true
+	killall -KILL "$app" &> /dev/null || true
 done
 
 print_success "Killed affected apps"

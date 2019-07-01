@@ -1,6 +1,9 @@
 #!/bin/bash
 
 setup_xcode () {
+  # Add iOS & Watch Simulator to Launchpad
+  sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+
   if ! xcode-select --print-path &> /dev/null; then
 
     # Prompt user to install the XCode Command Line Tools

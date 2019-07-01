@@ -132,10 +132,6 @@ setup_mac_dock () {
   # Don’t show recent applications in Dock
   defaults write com.apple.dock show-recents -bool false
 
-  # Add iOS & Watch Simulator to Launchpad
-  sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-  sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
-
   # Hot corners
   # Possible values:
   #  0: no-op
@@ -160,4 +156,8 @@ setup_mac_dock () {
   # Bottom right screen corner
   defaults write com.apple.dock wvous-br-corner -int 0
   defaults write com.apple.dock wvous-br-modifier -int 0
+}
+
+clear_icon_cache () {
+  sudo rm -rf /Library/Caches/com.apple.iconservices.store
 }
