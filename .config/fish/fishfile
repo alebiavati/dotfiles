@@ -1,3 +1,5 @@
+jhillyerd/plugin-git
+fishpkg/fish-git-util
 edc/bass
 igalic/anicode
 oh-my-fish/plugin-battery
@@ -5,4 +7,5 @@ laughedelic/brew-completions
 oh-my-fish/plugin-grc
 oh-my-fish/plugin-thefuck
 franciscolourenco/done
-nelsonjchen/omf-theme-nelsonjchen
+laughedelic/pisces
+matchai/spacefish
