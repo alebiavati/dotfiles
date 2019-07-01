@@ -10,3 +10,6 @@ set SPACEFISH_CHAR_SYMBOL '❯'
 
 # Suppress fish greeting
 set fish_greeting
+
+# Nodenv init
+status --is-interactive; and source (nodenv init -|psub)
