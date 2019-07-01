@@ -6,3 +6,6 @@ set -x TERM xterm-256color
 
 # Theme options (Spacefish)
 set SPACEFISH_CHAR_SYMBOL '❯'
+
+# Suppress fish greeting
+set fish_greeting
