@@ -19,6 +19,7 @@
 
 	reup = rebase-update # depot_tools specific
 	git = !exec git
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 
 [core]
 	excludesfile = ~/.gitignore
