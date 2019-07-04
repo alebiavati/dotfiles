@@ -4,13 +4,14 @@
 
 install_brew () {
   if ! which brew > /dev/null; then
-    ruby -e \
-      "$(curl -Ls 'https://github.com/Homebrew/install/raw/master/install')" \
-      < /dev/null > /dev/null 2>&1
+    URL_BREW='https://raw.githubusercontent.com/Homebrew/install/master/install'
+    echo -n '- Installing brew ... '
+    echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null
+    if [ $? -eq 0 ]; then echo 'OK'; else echo 'NG'; fi
+    brew analytics off
+    brew update
+    brew doctor
   fi
-  brew analytics off
-  brew update
-  brew doctor
   print_success "Installed Homebrew"
 }
 

@@ -100,6 +100,7 @@ p "Setup"
 
 # get utility scripts
 source ./macos/setup.sh
+source ./scripts/ssh.sh
 
 # Close system preferences to avoid overrides
 close_system_prefs
@@ -113,6 +114,8 @@ setup_hostname
 # Improve performance when using NPM and Git
 setup_filesys
 
+# Setup SSH key
+setup_ssh
 
 #######################################################
 # HOMEBREW
