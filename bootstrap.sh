@@ -424,6 +424,17 @@ setup_transmission
 
 
 #######################################################
+# Slack
+#######################################################
+
+print_title "Slack"
+
+# get utility scripts
+source ./macos/slack.command
+print_success "Set dark theme for slack"
+
+
+#######################################################
 # Dock
 #######################################################
 
