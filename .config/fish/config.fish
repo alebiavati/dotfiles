@@ -24,7 +24,9 @@ set SPACEFISH_PROMPT_ORDER $SPACEFISH_PROMPT_ORDER_BASIC
 # Suppress fish greeting
 set fish_greeting
 
-# Nodenv init
-if type -q nodenv
-  status --is-interactive; and source (nodenv init -|psub)
+# env commands init
+if status --is-interactive
+  for env_command in pyenv nodenv rbenv plenv
+    and source ($env_command init -|psub)
+  end
 end

@@ -244,6 +244,21 @@ setup_iterm2
 
 
 #######################################################
+# Node, Ruby, Python, Perl
+#######################################################
+
+print_title "Node, Ruby, Python, Perl"
+
+# get utility scripts
+source ./scripts/env-utils.sh
+
+install_env pyenv
+install_env nodenv
+install_env rbenv
+# install_env plenv # currently broken https://github.com/tokuhirom/plenv/issues/147
+
+
+#######################################################
 # General UI/UX
 #######################################################
 
