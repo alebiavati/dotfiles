@@ -159,5 +159,5 @@ setup_mac_dock () {
 }
 
 clear_icon_cache () {
-  sudo rm -rf /Library/Caches/com.apple.iconservices.store
+  sudo_keep rm -rf /Library/Caches/com.apple.iconservices.store
 }

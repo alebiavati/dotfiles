@@ -57,7 +57,7 @@ setup_mac_finder() {
   chflags nohidden ~/Library
 
   # Show the /Volumes folder
-  sudo chflags nohidden /Volumes
+  sudo_keep chflags nohidden /Volumes
 
   # Expand the following File Info panes:
   # “General”, “Open with”, and “Sharing & Permissions”

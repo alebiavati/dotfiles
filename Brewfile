@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "wpengine/wpe-cli"
 brew "diff-so-fancy"
+brew "duti"
 brew "fish"
 brew "git"
 brew "openssl"
@@ -58,6 +59,8 @@ cask "vlc"
 cask "whatsapp"
 cask "zoomus"
 mas "Boom 2", id: 948176063
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541

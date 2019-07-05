@@ -15,9 +15,14 @@ setup_mac_terminal () {
 
   # Disable the annoying line marks
   defaults write com.apple.Terminal ShowLineMarks -int 0
+
+  # Set terminal font
+  osascript -e "tell application \"Terminal\" to set the font name of window 1 to \"FiraCode-Regular\""
+  osascript -e "tell application \"Terminal\" to set the font size of window 1 to 14"
 }
 
 setup_iterm2 () {
   # Load/save configuration in dotfiles folder
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
   defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$REPO_DIR/prefs"
 }

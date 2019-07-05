@@ -19,6 +19,6 @@ setup_mac_screen() {
   defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
   # Enable HiDPI display modes (requires restart)
-  sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+  sudo_keep defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 }

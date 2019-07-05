@@ -1,7 +1,17 @@
 #!/bin/bash
 
-p () {
-  printf "\n\033[1m\033[34m%s\033[0m\n\n" "${1}"
+sudo_keep () {
+  if ! sudo -n true 2> /dev/null; then
+    # Ask for the administrator password upfront
+    print_question "Please enter the sudo password: "
+    printf "\n"
+    sudo -v
+    # Keep-alive
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+  fi
+
+  # run sudo command
+  sudo $@
 }
 
 ask () {
@@ -77,21 +87,6 @@ mkd() {
     fi
 }
 
-print_error() {
-    # Print output in red
-    printf "\e[0;31m  [✖] $1 $2\e[0m\n"
-}
-
-print_info() {
-    # Print output in purple
-    printf "\n\e[0;35m $1\e[0m\n\n"
-}
-
-print_question() {
-    # Print output in yellow
-    printf "\e[0;33m  [?] $1\e[0m"
-}
-
 print_result() {
     if [ $1 -eq 0 ]; then
       print_success "$2"
@@ -99,9 +94,4 @@ print_result() {
       print_error "$2"
       exit $1
     fi
-}
-
-print_success() {
-    # Print output in green
-    printf "\e[0;32m  [✔] $1\e[0m\n"
 }

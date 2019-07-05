@@ -1,16 +1,16 @@
 #!/bin/bash
 
 setup_mac_ux () {
-  sudo defaults write /Library/Preferences/.GlobalPreferences.plist _HIEnableThemeSwitchHotKey -bool true
+  sudo_keep defaults write /Library/Preferences/.GlobalPreferences.plist _HIEnableThemeSwitchHotKey -bool true
 
   # Set standby delay to 24 hours (default is 1 hour)
-  sudo pmset -a standbydelay 86400
+  sudo_keep pmset -a standbydelay 86400
 
   # Disable the sound effects on boot
-  sudo nvram SystemAudioVolume=" "
+  sudo_keep nvram SystemAudioVolume=" "
 
   # Disable transparency in the menu bar and elsewhere on Yosemite
-  sudo defaults write com.apple.universalaccess reduceTransparency -bool true
+  sudo_keep defaults write com.apple.universalaccess reduceTransparency -bool true
 
   # Disable the over-the-top focus ring animation
   defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
@@ -49,13 +49,13 @@ setup_mac_ux () {
 
   # Reveal IP address, hostname, OS version, etc. when clicking the clock
   # in the login window
-  sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+  sudo_keep defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
   # Restart automatically if the computer freezes
-  sudo systemsetup -setrestartfreeze on
+  sudo_keep systemsetup -setrestartfreeze on
 
   # Never go into computer sleep mode
-  sudo systemsetup -setcomputersleep Off > /dev/null
+  sudo_keep systemsetup -setcomputersleep Off > /dev/null
 
   # Disable automatic capitalization as it’s annoying when typing code
   defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false

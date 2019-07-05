@@ -14,10 +14,10 @@ setup_mac_inputs() {
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
   # Use scroll gesture with the Ctrl (^) modifier key to zoom
-  sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-  sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+  sudo_keep defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+  sudo_keep defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
   # Follow the keyboard focus while zoomed in
-  sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+  sudo_keep defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
   # Disable press-and-hold for keys in favor of key repeat
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

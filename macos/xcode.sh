@@ -2,38 +2,30 @@
 
 setup_xcode () {
   # Add iOS & Watch Simulator to Launchpad
-  sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+  sudo_keep ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
+  print_success "Add iOS Simulator to Applications"
 
-  if ! xcode-select --print-path &> /dev/null; then
+  # Point the `xcode-select` developer directory to
+  # the appropriate directory from within `Xcode.app`
+  # https://github.com/alrra/dotfiles/issues/13
+  local xcodepath=/Applications/Xcode.app/Contents/Developer
+  if [ "$(xcode-select --print-path)" != "$xcodepath" ]; then
+    sudo_keep xcode-select -switch $xcodepath
+  fi
+  print_result $? 'Make "xcode-select" developer directory point to Xcode'
+
+  if ! sudo_keep xcodebuild -checkFirstLaunchStatus &> /dev/null; then
+    # Accept XCode terms after installation
+    sudo_keep xcodebuild -license accept
 
     # Prompt user to install the XCode Command Line Tools
-    xcode-select --install &> /dev/null
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    sudo_keep xcodebuild -runFirstLaunch
 
     # Wait until the XCode Command Line Tools are installed
-    until xcode-select --print-path &> /dev/null; do
-        sleep 5
+    until sudo_keep xcodebuild -checkFirstLaunchStatus &> /dev/null; do
+      sleep 5
     done
-
-    print_result $? 'Install XCode Command Line Tools'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Point the `xcode-select` developer directory to
-    # the appropriate directory from within `Xcode.app`
-    # https://github.com/alrra/dotfiles/issues/13
-
-    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-    print_result $? 'Make "xcode-select" developer directory point to Xcode'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Prompt user to agree to the terms of the Xcode license
-    # https://github.com/alrra/dotfiles/issues/10
-
-    sudo xcodebuild -license
-    print_result $? 'Agree with the XCode Command Line Tools licence'
-
   fi
+
+  print_success "Install XCode packages and agree to the license"
 }

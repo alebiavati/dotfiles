@@ -3,12 +3,12 @@
 setup_spotlight () {
 
   # Hide Spotlight tray-icon (and subsequent helper)
-  #sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+  #sudo_keep chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
   # Disable Spotlight indexing for any volume that gets mounted and has not yet
   # been indexed before.
-  # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-  # sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+  # Use `sudo_keep mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+  # sudo_keep defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 
   # Change indexing order and disable some search results
   defaults write com.apple.spotlight orderedItems -array \
@@ -32,7 +32,7 @@ setup_spotlight () {
   # Load new settings before rebuilding the index
   killall mds > /dev/null 2>&1 || true
   # Make sure indexing is enabled for the main volume
-  sudo mdutil -i on / > /dev/null
+  sudo_keep mdutil -i on / > /dev/null
   # Rebuild the index from scratch
-  sudo mdutil -E / > /dev/null
+  sudo_keep mdutil -E / > /dev/null
 }

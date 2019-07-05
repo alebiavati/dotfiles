@@ -13,14 +13,29 @@ setup_paths () {
 
 # Set Hostname from DNS
 setup_hostname () {
+  local oldHostname="$(hostname -s)"
+  local newHostname="$USER-macbookpro"
+
+  if [ "$oldHostname" != "$newHostname" ]; then
+    sudo_keep scutil --set ComputerName "$newHostname"
+    sudo_keep scutil --set HostName "$newHostname"
+    sudo_keep scutil --set LocalHostName "$newHostname"
+    dscacheutil -flushcache
+  fi
+
+  print_success "Set Computer Name and Hostname to $newHostname"
+}
+
+# unused utility that will prompt for the hostname
+setup_hostname_prompt () {
   local defaultHostname="$(hostname -s)"
   ask "Set Computer Name and Hostname" "$defaultHostname"
   local desiredHostname=$(get_answer)
 
   if [ "$desiredHostname" != "$defaultHostname" ]; then
-    sudo scutil --set ComputerName "$desiredHostname"
-    sudo scutil --set HostName "$desiredHostname"
-    sudo scutil --set LocalHostName "$desiredHostname"
+    sudo_keep scutil --set ComputerName "$desiredHostname"
+    sudo_keep scutil --set HostName "$desiredHostname"
+    sudo_keep scutil --set LocalHostName "$desiredHostname"
     dscacheutil -flushcache
   fi
 
@@ -29,13 +44,25 @@ setup_hostname () {
 
 # Improve performance when using NPM and Git
 setup_filesys () {
-  # default is (257*1024)
-  sudo sysctl kern.maxvnodes=$((512*1024))
-  echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
+  local SYSCTL_FILE="/etc/sysctl.conf"
 
-  # https://facebook.github.io/watchman/docs/install.html#mac-os-file-descriptor-limits
-  sudo sysctl -w kern.maxfiles=$((10*1024*1024))
-  sudo sysctl -w kern.maxfilesperproc=$((1024*1024))
-  echo kern.maxfiles=$((10*1024*1024)) | sudo tee -a /etc/sysctl.conf
-  echo kern.maxfilesperproc=$((1024*1024)) | sudo tee -a /etc/sysctl.conf
+  local maxvnodes=$((1024*1024))
+  if ! grep -q "kern.maxvnodes=$maxvnodes" "$SYSCTL_FILE"; then
+    sudo_keep sysctl kern.maxvnodes=$maxvnodes
+    echo kern.maxvnodes=$maxvnodes | sudo_keep tee -a /etc/sysctl.conf
+  fi
+
+  local maxfiles=$((1024*1024))
+  if ! grep -q "kern.maxfiles=$maxfiles" "$SYSCTL_FILE"; then
+    sudo_keep sysctl -w kern.maxfiles=$maxfiles
+    echo kern.maxfiles=$maxfiles | sudo_keep tee -a /etc/sysctl.conf
+  fi
+
+  local maxfilesperproc=$((1024*1024))
+  if ! grep -q "kern.maxfilesperproc=$maxfilesperproc" "$SYSCTL_FILE"; then
+    sudo_keep sysctl -w kern.maxfilesperproc=$maxfilesperproc
+    echo kern.maxfilesperproc=$maxfilesperproc | sudo_keep tee -a /etc/sysctl.conf
+  fi
+
+  print_success "Set SysCtl values"
 }

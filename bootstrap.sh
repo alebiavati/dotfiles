@@ -5,10 +5,23 @@ set -e
 set -u
 set -o pipefail
 
-# Ask for the administrator password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+#######################################################
+# UTILS
+#######################################################
+
+print_title () { printf "\n\033[1m\033[34m%s\033[0m\n\n" "${1}"; }
+print_success () { printf "\e[0;32m  [✔] $1\e[0m\n"; }
+print_info() { printf "\n\e[0;35m $1\e[0m\n\n"; }
+print_question() { printf "\e[0;33m  [?] $1\e[0m"; }
+print_error() { printf "\e[0;31m  [✖] $1 ${2:-}\e[0m\n"; }
+ask_for_confirmation() {
+  print_question "$1 (Y/n) "; 
+  read -n 1
+  test "${REPLY:-}" != "" && printf "\n"
+  REPLY="${REPLY:-Y}"
+}
+answer_is_yes() { [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1; }
 
 
 #######################################################
@@ -21,12 +34,48 @@ SCREENSHOTS_DIR="$HOME/Screenshots"
 GH_USER="alebiavati"
 GH_REPO="dotfiles"
 
+print_title "Constants"
+
+echo "  CODE_DIR=$CODE_DIR"
+echo "  REPO_DIR=$REPO_DIR"
+echo "  SCREENSHOTS_DIR=$SCREENSHOTS_DIR"
+echo "  GH_USER=$GH_USER"
+echo "  GH_REPO=$GH_REPO"
+echo ""
+
+ask_for_confirmation "Are the constants above correct?"
+if answer_is_yes; then
+  print_success "Correct constants"
+else
+  print_error "Wrong constants, clone repository and modify them."
+  exit 1
+fi
+
+
+#######################################################
+# SETUP XCODE SELECT TO USE GIT
+#######################################################
+
+print_title "XCode Select"
+
+if ! xcode-select --print-path &> /dev/null; then
+  # Prompt user to install the XCode Command Line Tools
+  xcode-select --install &> /dev/null
+
+  # Wait until the XCode Command Line Tools are installed
+  until xcode-select --print-path &> /dev/null; do
+    sleep 5
+  done
+fi
+
+print_success 'Install XCode Command Line Tools'
+
 
 #######################################################
 # DOWNLOAD REPO
 #######################################################
 
-printf "\n\033[1m\033[34m%s\033[0m\n\n" "Download"
+print_title "Download Dotfiles Repo"
 
 # Make sure that the code folder exists
 if [ ! -d $CODE_DIR ]; then
@@ -45,9 +94,6 @@ else
   # TODO: update repo
 fi
 
-# Import dotfiles scripts now that they have been downloaded
-source ./scripts/utils.sh
-
 print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
 
 
@@ -55,9 +101,10 @@ print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
 # DOTFILES
 #######################################################
 
-p "Dotfiles"
+print_title "Dotfiles"
 
 # get utility scripts
+source ./scripts/utils.sh
 source ./scripts/symlink.sh
 
 # Symlink all necessary files
@@ -83,7 +130,7 @@ touch $HOME/.hushlogin
 # GIT
 #######################################################
 
-p "Git"
+print_title "Git"
 
 # get utility scripts
 source ./scripts/git.sh
@@ -93,14 +140,26 @@ setup_gitconfig_local
 
 
 #######################################################
+# SSH
+#######################################################
+
+print_title "SSH"
+
+# get utility scripts
+source ./scripts/ssh.sh
+
+# Setup SSH key
+setup_ssh
+
+
+#######################################################
 # SETUP
 #######################################################
 
-p "Setup"
+print_title "Setup"
 
 # get utility scripts
 source ./macos/setup.sh
-source ./scripts/ssh.sh
 
 # Close system preferences to avoid overrides
 close_system_prefs
@@ -114,14 +173,12 @@ setup_hostname
 # Improve performance when using NPM and Git
 setup_filesys
 
-# Setup SSH key
-setup_ssh
 
 #######################################################
 # HOMEBREW
 #######################################################
 
-p "Homebrew"
+print_title "Homebrew"
 
 # get utility scripts
 source ./macos/brew.sh
@@ -134,10 +191,35 @@ brew_bundle
 
 
 #######################################################
+# XCODE
+#######################################################
+
+print_title "XCode"
+
+# get utility scripts
+source ./macos/xcode.sh
+
+# Setup xcode
+setup_xcode
+
+
+#######################################################
+# Extensions
+#######################################################
+
+print_title "Extensions"
+
+# get utility scripts
+source ./macos/extensions.sh
+
+setup_default_programs
+
+
+#######################################################
 # Terminal
 #######################################################
 
-p "Terminal"
+print_title "Terminal"
 
 # get utility scripts
 source ./scripts/fish.sh
@@ -161,23 +243,10 @@ setup_iterm2
 
 
 #######################################################
-# XCODE
-#######################################################
-
-p "XCode"
-
-# get utility scripts
-source ./macos/xcode.sh
-
-# Setup xcode
-setup_xcode
-
-
-#######################################################
 # General UI/UX
 #######################################################
 
-p "General UI/UX"
+print_title "General UI/UX"
 
 # get utility scripts
 source ./macos/ux.sh
@@ -189,7 +258,7 @@ setup_mac_ux
 # SSD-specific tweaks
 #######################################################
 
-p "SSD"
+print_title "SSD"
 
 # get utility scripts
 source ./macos/ssd.sh
@@ -201,7 +270,7 @@ setup_mac_ssd
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 #######################################################
 
-p "Inputs & Bluetooth"
+print_title "Inputs & Bluetooth"
 
 # get utility scripts
 source ./macos/inputs.sh
@@ -213,7 +282,7 @@ setup_mac_inputs
 # Screen
 #######################################################
 
-p "Screen"
+print_title "Screen"
 
 # get utility scripts
 source ./macos/screen.sh
@@ -225,7 +294,7 @@ setup_mac_screen
 # Finder
 #######################################################
 
-p "Finder"
+print_title "Finder"
 
 # get utility scripts
 source ./macos/finder.sh
@@ -237,7 +306,7 @@ setup_mac_finder
 # Safari
 #######################################################
 
-p "Safari"
+print_title "Safari"
 
 # get utility scripts
 source ./macos/safari.sh
@@ -249,7 +318,7 @@ setup_safari
 # Mail
 #######################################################
 
-p "Mail"
+print_title "Mail"
 
 # get utility scripts
 source ./macos/mail.sh
@@ -261,7 +330,7 @@ setup_mail
 # Spotlight
 #######################################################
 
-p "Spotlight"
+print_title "Spotlight"
 
 # get utility scripts
 source ./macos/spotlight.sh
@@ -273,7 +342,7 @@ setup_spotlight
 # Spotlight
 #######################################################
 
-p "Spotlight"
+print_title "Spotlight"
 
 # get utility scripts
 source ./macos/spotlight.sh
@@ -285,7 +354,7 @@ setup_spotlight
 # Time Machine
 #######################################################
 
-p "Time Machine"
+print_title "Time Machine"
 
 # get utility scripts
 source ./macos/time_machine.sh
@@ -297,7 +366,7 @@ setup_time_machine
 # Activity Monitor
 #######################################################
 
-p "Activity Monitor"
+print_title "Activity Monitor"
 
 # get utility scripts
 source ./macos/activity_monitor.sh
@@ -309,7 +378,7 @@ setup_activity_monitor
 # Address Book, Dashboard, iCal, TextEdit, and Disk Utility
 #######################################################
 
-p "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
+print_title "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 
 # get utility scripts
 source ./macos/other_apps.sh
@@ -321,7 +390,7 @@ setup_other_apps
 # App Store
 #######################################################
 
-p "App Store"
+print_title "App Store"
 
 # get utility scripts
 source ./macos/app_store.sh
@@ -333,7 +402,7 @@ setup_app_store
 # Google Chrome
 #######################################################
 
-p "Google Chrome"
+print_title "Google Chrome"
 
 # get utility scripts
 source ./macos/google_chrome.sh
@@ -345,7 +414,7 @@ setup_google_chrome
 # Transmission
 #######################################################
 
-p "Transmission"
+print_title "Transmission"
 
 # get utility scripts
 source ./macos/transmission.sh
@@ -357,7 +426,7 @@ setup_transmission
 # Dock
 #######################################################
 
-p "Dock"
+print_title "Dock"
 
 # get utility scripts
 source ./macos/dock.sh
@@ -411,7 +480,7 @@ clear_icon_cache
 # RESTART APPS
 #######################################################
 
-p "Cleanup"
+print_title "Cleanup"
 
 for app in "Activity Monitor" \
 	"Address Book" \
@@ -442,4 +511,4 @@ print_success "Killed affected apps"
 # DONE
 #######################################################
 
-p "OK: Completed. Note that some of these changes require a logout/restart to take effect."
+print_title "OK: Completed. Note that some of these changes require a logout/restart to take effect."
