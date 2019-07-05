@@ -2,7 +2,7 @@
 
 setup_default_program () {
   local programId="$(osascript -e "id of app \"$1\"")"
-  if ! (duti -x $2 | grep -q "$programId"); then
+  if ! (duti -x $2 2> /dev/null | grep -q "$programId"); then
     duti -s "$programId" $2 all
   fi
 }

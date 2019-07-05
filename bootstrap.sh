@@ -16,7 +16,7 @@ print_info() { printf "\n\e[0;35m $1\e[0m\n\n"; }
 print_question() { printf "\e[0;33m  [?] $1\e[0m"; }
 print_error() { printf "\e[0;31m  [✖] $1 ${2:-}\e[0m\n"; }
 ask_for_confirmation() {
-  print_question "$1 (Y/n) "; 
+  print_question "$1 (Y/n) ";
   read -n 1
   test "${REPLY:-}" != "" && printf "\n"
   REPLY="${REPLY:-Y}"

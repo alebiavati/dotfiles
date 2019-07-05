@@ -1,5 +1,5 @@
 # Format:
 #  Application Name:comma,separated,list,of,extensions
 
-Visual Studio Code:css,scss,sass,js,jsx,markdown,md,sh,txt,xml
+Visual Studio Code:css,scss,sass,js,jsx,ts,tsx,json,markdown,md,sh,txt,xml,php,py,sqlite3,sqlite,sql,conf,yml,ini,rst,cfg
 The Unarchiver:rar,7z,msi,cab,lzma,xz
