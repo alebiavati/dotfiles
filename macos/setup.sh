@@ -14,7 +14,7 @@ setup_paths () {
 # Set Hostname from DNS
 setup_hostname () {
   local oldHostname="$(hostname -s)"
-  local newHostname="$USER-macbookpro"
+  local newHostname="$USER-mbp"
 
   if [ "$oldHostname" != "$newHostname" ]; then
     sudo_keep scutil --set ComputerName "$newHostname"

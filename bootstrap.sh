@@ -96,6 +96,8 @@ fi
 
 print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
 
+# source remaining utilities
+source ./scripts/utils.sh
 
 #######################################################
 # DOTFILES
@@ -104,7 +106,6 @@ print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
 print_title "Dotfiles"
 
 # get utility scripts
-source ./scripts/utils.sh
 source ./scripts/symlink.sh
 
 # Symlink all necessary files
