@@ -30,3 +30,9 @@ if status --is-interactive
     and source ($env_command init -|psub)
   end
 end
+
+# iTerm2 shell integration
+set iterm2_shell_integration_file $HOME/.iterm2_shell_integration.fish
+if [ -f $iterm2_shell_integration_file ]
+  source $iterm2_shell_integration_file
+end

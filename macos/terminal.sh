@@ -25,4 +25,14 @@ setup_iterm2 () {
   # Load/save configuration in dotfiles folder
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
   defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$REPO_DIR/prefs"
+
+  print_success "Set iTerm2 preferences custom folder location to point to dotfiles repo"
+
+  # install iTerm2 shell integration
+  local iterm2_shell_integration_file=$HOME/.iterm2_shell_integration.fish
+  if [ ! -f "$iterm2_shell_integration_file" ]; then
+    curl -L https://iterm2.com/shell_integration/fish -o $iterm2_shell_integration_file
+  fi
+
+  print_success "Installed iTerm Shell Integration"
 }
