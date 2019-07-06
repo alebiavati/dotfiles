@@ -2031,6 +2031,13 @@
 					<key>Text</key>
 					<string>0x00 0x39</string>
 				</dict>
+				<key>0x74-0x80000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x00 0x63</string>
+				</dict>
 				<key>0x77-0x80000</key>
 				<dict>
 					<key>Action</key>
@@ -4458,6 +4465,8 @@
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
+	<key>ShowFullScreenTabBar</key>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
