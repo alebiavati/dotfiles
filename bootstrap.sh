@@ -473,6 +473,7 @@ DOCK_APPS=(
   "Messages"
   "Skype"
   "Slack"
+  "Sketch"
   "Visual Studio Code"
   "iTerm"
   "Sourcetree"
