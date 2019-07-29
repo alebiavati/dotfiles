@@ -30,7 +30,7 @@ answer_is_yes() { [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1; }
 
 CODE_DIR="$HOME/code"
 REPO_DIR=$CODE_DIR/.dotfiles
-SCREENSHOTS_DIR="$HOME/Screenshots"
+SCREENSHOTS_DIR="$HOME/Pictures/Screenshots"
 GH_USER="alebiavati"
 GH_REPO="dotfiles"
 
