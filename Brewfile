@@ -48,6 +48,7 @@ cask "iterm2"
 cask "mailplane"
 cask "messenger"
 cask "ngrok"
+cask "postman"
 cask "sequel-pro"
 cask "sketch"
 cask "sketch-toolbox"
@@ -65,6 +66,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "whatsapp"
 cask "zoomus"
+mas "AntiSleep", id: 946798523
 mas "Boom 2", id: 948176063
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
