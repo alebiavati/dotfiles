@@ -31,3 +31,21 @@ alias docker-rm-all-volumes="docker volume rm (docker volume ls -f dangling=true
 
 # Verdaccio
 alias verdaccio="docker run -d -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio"
+
+# Traefik
+function traefik --description 'Manage Traefik proxy service'
+  set -l current_path (pwd)
+  set -l traefik_path $CODE_DIR/traefik
+
+  if not test -d $traefik_path
+    git clone git@github.com:alebiavati/traefik.git  $traefik_path
+  end
+
+  cd $CODE_DIR/traefik
+  if test (count $argv) -gt 0
+    docker-compose $argv
+  else
+    docker-compose up -d
+  end
+  cd $current_path
+end
