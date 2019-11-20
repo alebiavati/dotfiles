@@ -10,6 +10,7 @@ brew "xz"
 brew "python"
 brew "awscli"
 brew "glib"
+brew "circleci"
 brew "composer"
 brew "diff-so-fancy"
 brew "duti"
@@ -36,6 +37,7 @@ brew "terraform"
 brew "thefuck"
 brew "tmux"
 brew "trash-cli"
+brew "wp-cli"
 brew "yarn"
 brew "wpengine/wpe-cli/wpe-cli"
 cask "android-sdk"
@@ -75,13 +77,9 @@ cask "visual-studio-code"
 cask "vlc"
 cask "whatsapp"
 cask "zoomus"
-mas "AntiSleep", id: 946798523
 mas "Boom 2", id: 948176063
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Quip", id: 1003160018
 mas "Trello", id: 1278508951
 mas "Tweetbot", id: 557168941
