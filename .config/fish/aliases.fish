@@ -29,6 +29,8 @@ alias docker-rm-all-images="docker rmi (docker images -a -q)"
 alias docker-rm-all-volumes="docker volume rm (docker volume ls -f dangling=true -q)"
 # alias docker-reset="(docker-stop-all-containers > /dev/null 2>&1) && (docker-rm-all-containers > /dev/null 2>&1) && (docker-rm-all-images > /dev/null 2>&1) && (docker-rm-all-volumes > /dev/null 2>&1)"
 
+alias doc="docker-compose"
+
 # Verdaccio
 alias verdaccio="docker run -d -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio"
 
@@ -49,3 +51,6 @@ function traefik --description 'Manage Traefik proxy service'
   end
   cd $current_path
 end
+
+# CircleCI
+alias circleci-process="circleci config process .circleci/config.yml > .circleci/process.yml"
