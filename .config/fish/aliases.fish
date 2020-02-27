@@ -40,7 +40,7 @@ function traefik --description 'Manage Traefik proxy service'
   set -l traefik_path $CODE_DIR/traefik
 
   if not test -d $traefik_path
-    git clone git@github.com:alebiavati/traefik.git  $traefik_path
+    git clone git@github.com:zerooneagency/traefik.git  $traefik_path
   end
 
   cd $CODE_DIR/traefik
