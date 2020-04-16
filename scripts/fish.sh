@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 setup_fish () {
+  if is_linux; then
+    if [ -z "$(which fish)" ]; then
+      apt-get update && apt-get install fish thefuck python-pkg-resources grc upower python python-pip
+      pip install awscli
+    fi
+  fi
+
   # add fish to accepted shells
   if ! grep -Fxq "$(which fish)" /etc/shells; then
     sudo_keep sh -c "echo '\n$(which fish)' >> /etc/shells"

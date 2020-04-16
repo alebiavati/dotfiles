@@ -15,7 +15,7 @@ sudo_keep () {
 }
 
 ask () {
-  print_question "$1 [$2] "
+  print_question "$1 [${2:-}] "
   read
   REPLY=${REPLY:-$2}
 }

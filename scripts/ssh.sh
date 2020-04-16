@@ -5,5 +5,7 @@ setup_ssh () {
     ssh-keygen
   fi
 
-  ssh-add 
+  eval "$(ssh-agent)"
+
+  ssh-add || true 
 }

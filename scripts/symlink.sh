@@ -28,3 +28,4 @@ symlink_dotfiles() {
     fi
   done
 }
+

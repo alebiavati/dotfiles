@@ -23,6 +23,18 @@ ask_for_confirmation() {
 }
 answer_is_yes() { [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1; }
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+is_linux() { [[ "$machine" = "Linux" ]] && return 0 || return 1; }
+is_mac() { [[ "$machine" = "Mac" ]] && return 0 || return 1; }
+
 
 #######################################################
 # CONSTANTS - change to your needs
@@ -56,6 +68,7 @@ fi
 # SETUP XCODE SELECT TO USE GIT
 #######################################################
 
+if is_mac; then
 print_title "XCode Select"
 
 if ! xcode-select --print-path &> /dev/null; then
@@ -69,6 +82,7 @@ if ! xcode-select --print-path &> /dev/null; then
 fi
 
 print_success 'Install XCode Command Line Tools'
+fi
 
 
 #######################################################
@@ -157,6 +171,7 @@ setup_ssh
 # SETUP
 #######################################################
 
+if is_mac; then
 print_title "Setup"
 
 # get utility scripts
@@ -173,12 +188,14 @@ setup_hostname
 
 # Improve performance when using NPM and Git
 setup_filesys
+fi
 
 
 #######################################################
 # HOMEBREW
 #######################################################
 
+if is_mac; then
 print_title "Homebrew"
 
 # get utility scripts
@@ -189,12 +206,13 @@ install_brew
 
 # Install Homebrew Packages
 brew_bundle
-
+fi
 
 #######################################################
 # XCODE
 #######################################################
 
+if is_mac; then
 print_title "XCode"
 
 # get utility scripts
@@ -202,18 +220,20 @@ source ./macos/xcode.sh
 
 # Setup xcode
 setup_xcode
-
+fi
 
 #######################################################
 # Extensions
 #######################################################
 
+if is_mac; then
 print_title "Extensions"
 
 # get utility scripts
 source ./macos/extensions.sh
 
 setup_default_programs
+fi
 
 
 #######################################################
@@ -225,7 +245,10 @@ print_title "Terminal"
 # get utility scripts
 source ./scripts/fish.sh
 source ./scripts/tpm.sh
+
+if is_mac; then
 source ./macos/terminal.sh
+fi
 
 # Setup Fish shell as default shell
 setup_fish
@@ -236,17 +259,19 @@ install_fisher
 # install Tmux package manager
 install_tpm
 
+if is_mac; then
 # setup Mac Terminal
 setup_mac_terminal
 
 # setup iTerm2
 setup_iterm2
-
+fi
 
 #######################################################
 # Node, Ruby, Python, Perl
 #######################################################
 
+if is_mac; then
 print_title "Node, Ruby, Python, Perl"
 
 # get utility scripts
@@ -256,203 +281,232 @@ install_env pyenv
 install_env nodenv
 install_env rbenv
 # install_env plenv # currently broken https://github.com/tokuhirom/plenv/issues/147
-
+fi
 
 #######################################################
 # General UI/UX
 #######################################################
 
+if is_mac; then
 print_title "General UI/UX"
 
 # get utility scripts
 source ./macos/ux.sh
 
 setup_mac_ux
+fi
 
 
 #######################################################
 # SSD-specific tweaks
 #######################################################
 
+if is_mac; then
 print_title "SSD"
 
 # get utility scripts
 source ./macos/ssd.sh
 
 setup_mac_ssd
-
+fi
 
 #######################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 #######################################################
 
+if is_mac; then
 print_title "Inputs & Bluetooth"
 
 # get utility scripts
 source ./macos/inputs.sh
 
 setup_mac_inputs
-
+fi
 
 #######################################################
 # Screen
 #######################################################
 
+if is_mac; then
 print_title "Screen"
 
 # get utility scripts
 source ./macos/screen.sh
 
 setup_mac_screen
+fi
 
 
 #######################################################
 # Finder
 #######################################################
 
+if is_mac; then
 print_title "Finder"
 
 # get utility scripts
 source ./macos/finder.sh
 
 setup_mac_finder
+fi
 
 
 #######################################################
 # Safari
 #######################################################
 
+if is_mac; then
 print_title "Safari"
 
 # get utility scripts
 source ./macos/safari.sh
 
 setup_safari
+fi
 
 
 #######################################################
 # Mail
 #######################################################
 
+if is_mac; then
 print_title "Mail"
 
 # get utility scripts
 source ./macos/mail.sh
 
 setup_mail
+fi
 
 
 #######################################################
 # Spotlight
 #######################################################
 
+if is_mac; then
 print_title "Spotlight"
 
 # get utility scripts
 source ./macos/spotlight.sh
 
 setup_spotlight
+fi
 
 
 #######################################################
 # Spotlight
 #######################################################
 
+if is_mac; then
 print_title "Spotlight"
 
 # get utility scripts
 source ./macos/spotlight.sh
 
 setup_spotlight
-
+fi
 
 #######################################################
 # Time Machine
 #######################################################
 
+if is_mac; then
 print_title "Time Machine"
 
 # get utility scripts
 source ./macos/time_machine.sh
 
 setup_time_machine
-
+fi
 
 #######################################################
 # Activity Monitor
 #######################################################
 
+if is_mac; then
 print_title "Activity Monitor"
 
 # get utility scripts
 source ./macos/activity_monitor.sh
 
 setup_activity_monitor
+fi
 
 
 #######################################################
 # Address Book, Dashboard, iCal, TextEdit, and Disk Utility
 #######################################################
 
+if is_mac; then
 print_title "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 
 # get utility scripts
 source ./macos/other_apps.sh
 
 setup_other_apps
+fi
 
 
 #######################################################
 # App Store
 #######################################################
 
+if is_mac; then
 print_title "App Store"
 
 # get utility scripts
 source ./macos/app_store.sh
 
 setup_app_store
+fi
 
 
 #######################################################
 # Google Chrome
 #######################################################
 
+if is_mac; then
 print_title "Google Chrome"
 
 # get utility scripts
 source ./macos/google_chrome.sh
 
 setup_google_chrome
+fi
 
 
 #######################################################
 # Transmission
 #######################################################
 
+if is_mac; then
 print_title "Transmission"
 
 # get utility scripts
 source ./macos/transmission.sh
 
 setup_transmission
+fi
 
 
 #######################################################
 # Slack
 #######################################################
 
+if is_mac; then
 print_title "Slack"
 
 # get utility scripts
 source ./macos/slack.command
 print_success "Set dark theme for slack"
+fi
 
 
 #######################################################
 # Dock
 #######################################################
 
+if is_mac; then
 print_title "Dock"
 
 # get utility scripts
@@ -503,11 +557,13 @@ setup_dock_folders "$DOCK_FOLDERS_CSV"
 
 # Clear icon cache
 clear_icon_cache
+fi
 
 #######################################################
 # RESTART APPS
 #######################################################
 
+if is_mac; then
 print_title "Cleanup"
 
 for app in "Activity Monitor" \
@@ -534,6 +590,7 @@ for app in "Activity Monitor" \
 done
 
 print_success "Killed affected apps"
+fi
 
 #######################################################
 # DONE

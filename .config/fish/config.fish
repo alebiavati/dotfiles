@@ -1,3 +1,5 @@
+set -U fish_key_bindings fish_default_key_bindings
+
 source ~/.config/fish/env.fish
 source ~/.config/fish/tmux.fish
 source ~/.config/fish/aliases.fish
@@ -27,7 +29,9 @@ set fish_greeting
 # env commands init
 if status --is-interactive
   for env_command in pyenv nodenv rbenv plenv
-    and source ($env_command init -|psub)
+    if type -q $env_command
+      and source ($env_command init -|psub)
+    end
   end
 end
 
