@@ -3,8 +3,11 @@
 setup_fish () {
   if is_linux; then
     if [ -z "$(which fish)" ]; then
-      apt-get update && apt-get install fish thefuck python-pkg-resources grc upower python python-pip
+      apt-get update
+      curl -sL https://deb.nodesource.com/setup_12.x | bash -
+      apt-get install -y fish thefuck python-pkg-resources grc upower python python-pip nodejs
       pip install awscli
+      npm install -g yarn diff-so-fancy
     fi
   fi
 
