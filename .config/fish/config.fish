@@ -26,6 +26,11 @@ set SPACEFISH_PROMPT_ORDER $SPACEFISH_PROMPT_ORDER_BASIC
 # Suppress fish greeting
 set fish_greeting
 
+# Setup ruby build options
+function rbenv_setup -d "setup rbenv with correct options for Homebrew"
+  set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
+end
+
 # env commands init
 if status --is-interactive
   for env_command in pyenv nodenv rbenv plenv

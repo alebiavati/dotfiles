@@ -3714,17 +3714,22 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.3beta1</string>
-		<string>3.3.7beta4</string>
+		<string>3.3.8beta3</string>
+		<string>3.3.10beta4</string>
+		<string>3.3.5beta2</string>
+		<string>3.3.8beta5</string>
+		<string>3.2.9</string>
+		<string>3.3.0beta13</string>
 		<string>3.3.1beta1</string>
 		<string>3.3.0beta16</string>
-		<string>3.3.7beta2</string>
-		<string>3.3.0beta13</string>
 		<string>3.3.8beta4</string>
-		<string>3.3.5beta2</string>
-		<string>3.3.8beta3</string>
-		<string>3.2.9</string>
-		<string>3.3.8beta5</string>
+		<string>3.3.7beta2</string>
+		<string>3.3.9beta1</string>
+		<string>3.3.10beta1</string>
+		<string>3.3.7beta4</string>
+		<string>3.3.10beta2</string>
 		<string>3.3.8beta1</string>
+		<string>3.3.10beta3</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -3744,7 +3749,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>018C80BA-C5E2-4B1E-8998-6568074A543B</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>52</integer>
+	<integer>80</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -4479,6 +4484,10 @@
 	</dict>
 	<key>NoSyncSaveDocumentAsPathSet_saveDocumentAs:</key>
 	<true/>
+	<key>NoSyncSemanticHistoryCommandFailed_/usr/bin/subl mothersoutfront.test/wp-admin:</key>
+	<true/>
+	<key>NoSyncSemanticHistoryCommandFailed_/usr/bin/subl mothersoutfront.test/wp-admin:_selection</key>
+	<integer>1</integer>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>583993390.38232303</real>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
@@ -4497,6 +4506,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -4557,7 +4568,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-27T08:10:56Z</date>
+	<date>2020-05-19T16:04:13Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -7943,7 +7954,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.8beta5</string>
+	<string>3.3.10beta4</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
