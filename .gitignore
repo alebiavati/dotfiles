@@ -1,7 +1,12 @@
 # no thx
 node_modules
-.vscode
 .idea
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # Folder view configuration files
 .DS_Store

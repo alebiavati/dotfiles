@@ -45,3 +45,10 @@ set iterm2_shell_integration_file $HOME/.iterm2_shell_integration.fish
 if [ -f $iterm2_shell_integration_file ]
   source $iterm2_shell_integration_file
 end
+
+# Google Cloud CLI
+set -x CLOUDSDK_PYTHON /usr/local/bin/python3
+set gcloud_inc_file /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+if [ -f $gcloud_inc_file ]
+  set -g fish_user_paths $gcloud_inc_file $fish_user_paths
+end

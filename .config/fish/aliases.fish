@@ -37,8 +37,8 @@ alias k="kubectl"
 alias verdaccio="docker run -d -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio"
 
 # CircleCI
-alias circleci-process="circleci config process .circleci/config.yml > .circleci/process.yml"
-alias circleci-process-run="circleci local execute -c .circleci/process.yml"
+alias cip="circleci config process .circleci/config.yml > .circleci/process.yml"
+alias cir="circleci local execute -c .circleci/process.yml"
 
 # Taskfile
 alias run="./Taskfile"

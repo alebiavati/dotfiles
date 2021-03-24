@@ -14,7 +14,8 @@ set my_paths \
   $TRAEFIK_DIR/bin \
   $HOME/bin \
   $HOME/.local/bin \
-  $HOME/.composer/vendor/bin
+  $HOME/.composer/vendor/bin \
+  (cat $HOME/Library/Application\ Support/Garmin/ConnectIQ/current-sdk.cfg)bin
 
 set missing_paths
 for my_path in $my_paths
@@ -26,3 +27,10 @@ for my_path in $my_paths
 end
 
 set -x PATH $missing_paths $PATH
+
+# Mono Path setting
+set -x VSToolsPath /Library/Frameworks/Mono.framework/Versions/Current/lib/mono/xbuild/Microsoft/VisualStudio/v16.0/
+
+# Go path
+set -x GOPATH $HOME/.go
+set -x PATH $GOPATH/bin $PATH
