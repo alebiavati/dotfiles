@@ -52,3 +52,6 @@ set gcloud_inc_file /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
 if [ -f $gcloud_inc_file ]
   set -g fish_user_paths $gcloud_inc_file $fish_user_paths
 end
+
+# Homebrew sbin folder
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths

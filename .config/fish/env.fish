@@ -34,3 +34,6 @@ set -x VSToolsPath /Library/Frameworks/Mono.framework/Versions/Current/lib/mono/
 # Go path
 set -x GOPATH $HOME/.go
 set -x PATH $GOPATH/bin $PATH
+
+# GPG env
+set -x GPG_TTY (tty)
