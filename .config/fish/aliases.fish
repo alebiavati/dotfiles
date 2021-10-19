@@ -45,3 +45,6 @@ alias cir="circleci local execute -c .circleci/process.yml"
 alias run="./Taskfile"
 alias task="./Taskfile"
 alias t="./Taskfile"
+
+# 1Password
+alias ops="eval (op signin my)"
