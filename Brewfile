@@ -14,7 +14,6 @@ tap "stripe/stripe-cli"
 tap "tilt-dev/tap"
 tap "weaveworks/tap"
 tap "wpengine/wpe-cli"
-brew "readline"
 brew "aws-iam-authenticator"
 brew "xz"
 brew "awscli"
@@ -32,10 +31,14 @@ brew "diff-so-fancy"
 brew "dnsmasq", restart_service: true
 brew "doctl"
 brew "duti"
+brew "wxwidgets"
 brew "erlang"
 brew "elixir"
 brew "exiftool"
+brew "libtool"
+brew "guile"
 brew "libevent"
+brew "gnutls"
 brew "harfbuzz"
 brew "libass"
 brew "ffmpeg"
@@ -45,15 +48,13 @@ brew "freetds"
 brew "fzf"
 brew "isl"
 brew "libmpc"
-brew "krb5"
 brew "libdap"
 brew "nss"
-brew "poppler"
 brew "gdal"
 brew "geoip"
 brew "gh"
 brew "git"
-brew "gnupg"
+brew "gnupg", link: false
 brew "go"
 brew "grc"
 brew "hasura-cli"
@@ -84,6 +85,7 @@ brew "php"
 brew "php-cs-fixer"
 brew "pinentry-mac"
 brew "plenv"
+brew "poppler"
 brew "postgresql"
 brew "protobuf-c"
 brew "sfcgal"
@@ -179,21 +181,19 @@ cask "whatsapp"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Boom 2", id: 948176063
-mas "GarageBand", id: 682658836
+mas "Clocker", id: 1056643111
 mas "GIPHY CAPTURE", id: 668208984
 mas "Harvest", id: 506189836
-mas "iMovie", id: 408981434
-mas "Jira", id: 1475897096
+mas "Keynote", id: 409183694
 mas "Messenger", id: 1480068668
 mas "Microsoft Excel", id: 462058435
-mas "Microsoft Outlook", id: 985367838
-mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
-mas "Mimeo Photos", id: 1282504627
-mas "monday.com", id: 1298450641
+mas "NordVPN", id: 905953485
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
 mas "Quip", id: 1003160018
 mas "Sleep Control Center", id: 946798523
 mas "Trello", id: 1278508951
 mas "Tweetbot", id: 557168941
-mas "Xcode", id: 497799835
+mas "WireGuard", id: 1451685025
