@@ -133,6 +133,7 @@ FILES_TO_SYMLINK=(
   .vimrc
   bin
   .config/fish
+  .config/starship.toml
 )
 
 symlink_dotfiles "${FILES_TO_SYMLINK[*]}"

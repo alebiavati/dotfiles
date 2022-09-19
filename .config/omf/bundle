@@ -1,0 +1,8 @@
+package bass
+package battery
+package config
+package grc
+package https://github.com/jhillyerd/plugin-git
+package pisces
+package spark
+theme default
