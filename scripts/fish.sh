@@ -5,7 +5,7 @@ setup_fish () {
     if [ -z "$(which fish)" ]; then
       apt-get update
       curl -sL https://deb.nodesource.com/setup_12.x | bash -
-      apt-get install -y fish thefuck python-pkg-resources grc upower python python-pip nodejs
+      apt-get install -y fish  thefuck python-pkg-resources grc upower python python-pip nodejs
       pip install awscli
       npm install -g yarn diff-so-fancy
     fi
@@ -25,14 +25,10 @@ setup_fish () {
   print_success "Set Fish as the default shell"
 }
 
-install_fisher () {
+install_omf () {
   # install fisher
-  if ! fish -c 'functions -q fisher'; then
-    curl https://git.io/fisher --create-dirs -sLo $HOME/.config/fish/functions/fisher.fish
+  if ! fish -c 'functions -q omf'; then
+    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
   fi
-  print_success "Installed Fisher package manager"
-
-  # install fisher plugins
-  fish -c fisher
-  print_success "Installed Fish plugins"
+  print_success "Installed Oh My Fish package manager"
 }

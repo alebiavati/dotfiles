@@ -255,7 +255,7 @@ fi
 setup_fish
 
 # Install Fisher
-install_fisher
+install_omf
 
 # install Tmux package manager
 install_tpm

@@ -94,6 +94,7 @@ symbol = "⛵ "
 disabled = false
 [kubernetes.context_aliases]
 "rancher-desktop" = "rancher"
+"ale-rancher-desktop" = "ale"
 ".*/openshift-cluster/.*" = "openshift"
 "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
 
