@@ -11,7 +11,7 @@ source ~/.config/fish/go.fish
 source ~/.config/fish/gpg.fish
 source ~/.config/fish/homebrew.fish
 source ~/.config/fish/iterm2.fish
-source ~/.config/fish/java.fish
+# source ~/.config/fish/java.fish
 source ~/.config/fish/kubectl.fish
 source ~/.config/fish/make.fish
 source ~/.config/fish/mono.fish
