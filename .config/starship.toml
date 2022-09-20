@@ -79,7 +79,7 @@ $character"""
 [gcloud]
 format = 'on [$symbol$active(\($project\))]($style) '
 style = "bold yellow"
-symbol = "☁️ "
+symbol = "☁️  "
 [gcloud.region_aliases]
 australia-southeast1 = "au1"
 australia-southeast2 = "au2"
@@ -99,3 +99,4 @@ disabled = false
 
 [hostname]
 ssh_symbol = "🌐"
+
