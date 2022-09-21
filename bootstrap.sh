@@ -134,6 +134,7 @@ FILES_TO_SYMLINK=(
   bin
   .config/fish
   .config/starship.toml
+  .huskyrc
 )
 
 symlink_dotfiles "${FILES_TO_SYMLINK[*]}"
