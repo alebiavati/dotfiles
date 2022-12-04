@@ -1,0 +1,2 @@
+alias tele="telepresence"
+

@@ -87,6 +87,7 @@ australia-southeast2 = "au2"
 foratherapy-dev = "dev"
 foratherapy-staging = "staging"
 foratherapy-prod = "prod"
+foratherapy-shared = "shared"
 
 [kubernetes]
 format = 'on [$symbol$context(\($namespace\))](dimmed green) '
@@ -94,8 +95,12 @@ symbol = "⛵ "
 disabled = false
 [kubernetes.context_aliases]
 ".*rancher-desktop.*" = "rancher"
-".*/openshift-cluster/.*" = "openshift"
-"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+".*/(?P<var_cluster>[\\w-]+)/.*" = "$var_cluster"
+"gke_(fora)therapy-([^_]+)_.*" = "gke-$1-$2"
+#"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+#"gke_((?P<var_project>fora)therapy-(?P<var_custer>[\\w]+)_.*|(?P<var_project>[\\w-]+)_.*_(?P<var_cluster>[\\w-]+))" = "gke-$var_project-$var_cluster"
+#"gke_(?:[^f]|[^f][^o]|[^f][^o][^r]|[^f][^o][^r][^a]).*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+#"gke_([^f][^o][^r][^a]).*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
 
 [hostname]
 ssh_symbol = "🌐"

@@ -18,7 +18,10 @@ source ~/.config/fish/mono.fish
 source ~/.config/fish/onepassword.fish
 source ~/.config/fish/rancher_desktop.fish
 source ~/.config/fish/taskfile.fish
+source ~/.config/fish/telepresence.fish
 source ~/.config/fish/terraform.fish
 source ~/.config/fish/theme.fish
 source ~/.config/fish/tmux.fish
 source ~/.config/fish/tools.fish
+source ~/.config/fish/kubectx.fish
+
