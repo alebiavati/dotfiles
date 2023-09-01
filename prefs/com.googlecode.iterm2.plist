@@ -157,13 +157,13 @@
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
-	<integer>96</integer>
+	<integer>27</integer>
 	<key>HotkeyCode</key>
-	<integer>50</integer>
+	<integer>53</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>262401</integer>
+	<integer>262144</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>

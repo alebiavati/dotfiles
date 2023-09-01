@@ -7,6 +7,9 @@ if test -e /usr/local/bin/python3
   set -x CLOUDSDK_PYTHON /usr/local/bin/python3
 end
 
+# Gcloud GKE plugin
+set -x USE_GKE_GCLOUD_AUTH_PLUGIN True
+
 # The next line updates PATH for the Google Cloud SDK.
 if status --is-interactive
   set gcloud_inc_file_local /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
