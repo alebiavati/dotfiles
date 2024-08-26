@@ -1,0 +1,42 @@
+version: '3'
+
+tasks:
+  create-session:
+    internal: true
+    silent: true
+    dir: '{{.SESSION_ROOT}}'
+    cmds:
+      - task: kill-session
+      - echo 'Creating new {{.SESSION_NAME}} session'
+      - tmux new-session -d -s {{.SESSION_NAME}} -n root
+      - tmux split-window -t '{{.SESSION_NAME}}:root' -v
+      - tmux select-window -t '{{.SESSION_NAME}}:root.1'
+
+  kill-session:
+    internal: true
+    silent: true
+    desc: "Stops all processes and closes the tmux session"
+    cmds:
+      - tmux has-session -t {{.SESSION_NAME}} > /dev/null 2>&1 && tmux kill-session -t {{.SESSION_NAME}} || true
+
+  attach-session:
+    internal: true
+    silent: true
+    cmds:
+      - tmux select-window -t '{{.SESSION_NAME}}:2'
+      - tmux attach-session -t {{.SESSION_NAME}}
+
+  run-command:
+    internal: true
+    silent: true
+    dir: '{{.SESSION_ROOT}}/{{.WINDOW_PATH}}'
+    cmds:
+      - |
+        if ! tmux list-windows -t "{{.SESSION_NAME}}" | grep -q "{{.WINDOW_NAME}}"; then
+          tmux new-window -t {{.SESSION_NAME}} -n {{.WINDOW_NAME}}
+        fi
+        index=$(tmux list-panes -t {{.SESSION_NAME}}:{{.WINDOW_NAME}} | wc -l)
+        index=$(echo "$index" | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+        tmux split-window -t "{{.SESSION_NAME}}:{{.WINDOW_NAME}}.$index" -v;
+        tmux send-keys -t "{{.SESSION_NAME}}:{{.WINDOW_NAME}}.$index" "{{.COMMAND}}" C-m
+        tmux select-layout -t "{{.SESSION_NAME}}:{{.WINDOW_NAME}}" even-vertical
