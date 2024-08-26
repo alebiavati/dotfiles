@@ -11,7 +11,7 @@ source ~/.config/fish/go.fish
 source ~/.config/fish/gpg.fish
 source ~/.config/fish/homebrew.fish
 source ~/.config/fish/iterm2.fish
-# source ~/.config/fish/java.fish
+source ~/.config/fish/java.fish
 source ~/.config/fish/kubectl.fish
 source ~/.config/fish/make.fish
 source ~/.config/fish/mono.fish
@@ -24,4 +24,8 @@ source ~/.config/fish/theme.fish
 source ~/.config/fish/tmux.fish
 source ~/.config/fish/tools.fish
 source ~/.config/fish/kubectx.fish
+source ~/.config/fish/openai.fish
+source ~/.config/fish/env.fish
+source ~/.config/fish/heroku.fish
+source ~/.config/fish/android.fish
 

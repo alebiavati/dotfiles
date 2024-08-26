@@ -1,9 +1,13 @@
 if status --is-interactive
   # env commands init
-  for env_command in nodenv pyenv # rbenv plenv
+  for env_command in nodenv pyenv rbenv # plenv
     if type -q $env_command
       and source ($env_command init -|psub)
     end
+  end
+
+  if type -q pyenv
+    and source (pyenv virtualenv-init -|psub)
   end
 
   # Zoxide

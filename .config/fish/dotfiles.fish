@@ -1,6 +1,6 @@
 # Dotfiles path
-if test -e $HOME/code/.dotfiles
-  set -x DOTFILES_DIR "$HOME/code/.dotfiles"
+if test -e $HOME/code/alebiavati/dotfiles
+  set -x DOTFILES_DIR "$HOME/code/alebiavati/dotfiles"
 end
 
 # dotfile installed bin folder

@@ -41,7 +41,7 @@ is_mac() { [[ "$machine" = "Mac" ]] && return 0 || return 1; }
 #######################################################
 
 CODE_DIR="$HOME/code"
-REPO_DIR=$CODE_DIR/.dotfiles
+REPO_DIR=$CODE_DIR/alebiavati/dotfiles
 SCREENSHOTS_DIR="$HOME/Pictures/Screenshots"
 GH_USER="alebiavati"
 GH_REPO="dotfiles"
@@ -64,444 +64,431 @@ else
 fi
 
 
-#######################################################
-# SETUP XCODE SELECT TO USE GIT
-#######################################################
+# #######################################################
+# # SETUP XCODE SELECT TO USE GIT
+# #######################################################
 
-if is_mac; then
-print_title "XCode Select"
+# if is_mac; then
+# print_title "XCode Select"
 
-if ! xcode-select --print-path &> /dev/null; then
-  # Prompt user to install the XCode Command Line Tools
-  xcode-select --install &> /dev/null
+# if ! xcode-select --print-path &> /dev/null; then
+#   # Prompt user to install the XCode Command Line Tools
+#   xcode-select --install &> /dev/null
 
-  # Wait until the XCode Command Line Tools are installed
-  until xcode-select --print-path &> /dev/null; do
-    sleep 5
-  done
-fi
+#   # Wait until the XCode Command Line Tools are installed
+#   until xcode-select --print-path &> /dev/null; do
+#     sleep 5
+#   done
+# fi
 
-print_success 'Install XCode Command Line Tools'
-fi
+# print_success 'Install XCode Command Line Tools'
+# fi
 
 
-#######################################################
-# DOWNLOAD REPO
-#######################################################
+# #######################################################
+# # DOWNLOAD REPO
+# #######################################################
 
-print_title "Download Dotfiles Repo"
+# print_title "Download Dotfiles Repo"
 
-# Make sure that the code folder exists
-if [ ! -d $CODE_DIR ]; then
-  mkdir -p $CODE_DIR
-fi
+# # Make sure that the code folder exists
+# if [ ! -d $CODE_DIR ]; then
+#   mkdir -p $CODE_DIR
+# fi
 
-# check if we need to download the dotfiles repo
-if [ ! -d $REPO_DIR ]; then
-  cd $CODE_DIR
-  git clone https://github.com/$GH_USER/$GH_REPO.git $REPO_DIR
-  cd $REPO_DIR
-  # Once cloned we can set the remote URL to use SSH for future updates (will require ssh-keygen)
-  git remote set-url origin git@github.com:$GH_USER/$GH_REPO.git
-else
-  cd $REPO_DIR
-  # TODO: update repo
-fi
+# # check if we need to download the dotfiles repo
+# if [ ! -d $REPO_DIR ]; then
+#   cd $CODE_DIR
+#   git clone https://github.com/$GH_USER/$GH_REPO.git $REPO_DIR
+#   cd $REPO_DIR
+#   # Once cloned we can set the remote URL to use SSH for future updates (will require ssh-keygen)
+#   git remote set-url origin git@github.com:$GH_USER/$GH_REPO.git
+# else
+#   cd $REPO_DIR
+#   # TODO: update repo
+# fi
 
-print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
+# print_success "Cloned $GH_USER/$GH_REPO repository into $REPO_DIR"
 
 # source remaining utilities
 source ./scripts/utils.sh
 
-#######################################################
-# DOTFILES
-#######################################################
+# #######################################################
+# # DOTFILES
+# #######################################################
 
-print_title "Dotfiles"
+# print_title "Dotfiles"
 
-# get utility scripts
-source ./scripts/symlink.sh
+# # get utility scripts
+# source ./scripts/symlink.sh
 
-# Symlink all necessary files
-FILES_TO_SYMLINK=(
-  .gitattributes
-  .gitconfig
-  .gitignore
-  .tmux
-  .tmux.conf
-  .vim
-  .vimrc
-  bin
-  .config/fish
-  .config/starship.toml
-  .huskyrc
-)
+# # Symlink all necessary files
+# FILES_TO_SYMLINK=(
+#   .gitattributes
+#   .gitconfig
+#   .gitignore
+#   .tmux
+#   .tmux.conf
+#   .vim
+#   .vimrc
+#   bin
+#   .config/fish
+#   .config/starship.toml
+#   .huskyrc
+# )
 
-symlink_dotfiles "${FILES_TO_SYMLINK[*]}"
+# symlink_dotfiles "${FILES_TO_SYMLINK[*]}"
 
-# Adding .hushlogin to silence terminal login
-touch $HOME/.hushlogin
+# # Adding .hushlogin to silence terminal login
+# touch $HOME/.hushlogin
 
 
-#######################################################
-# GIT
-#######################################################
+# #######################################################
+# # GIT
+# #######################################################
 
-print_title "Git"
+# print_title "Git"
 
-# get utility scripts
-source ./scripts/git.sh
+# # get utility scripts
+# source ./scripts/git.sh
 
-# create .gitconfig.local
-setup_gitconfig_local
+# # create .gitconfig.local
+# setup_gitconfig_local
 
 
-#######################################################
-# SSH
-#######################################################
+# #######################################################
+# # SSH
+# #######################################################
 
-print_title "SSH"
+# print_title "SSH"
 
-# get utility scripts
-source ./scripts/ssh.sh
+# # get utility scripts
+# source ./scripts/ssh.sh
 
-# Setup SSH key
-setup_ssh
+# # Setup SSH key
+# setup_ssh
 
 
-#######################################################
-# SETUP
-#######################################################
+# #######################################################
+# # SETUP
+# #######################################################
 
-if is_mac; then
-print_title "Setup"
+# if is_mac; then
+# print_title "Setup"
 
-# get utility scripts
-source ./macos/setup.sh
+# # get utility scripts
+# source ./macos/setup.sh
 
-# Close system preferences to avoid overrides
-close_system_prefs
+# # Close system preferences to avoid overrides
+# close_system_prefs
 
-# setup initial paths
-setup_paths
+# # setup initial paths
+# setup_paths
 
-# Set computer hostname
-setup_hostname
+# # # Set computer hostname
+# setup_hostname
 
-# Improve performance when using NPM and Git
-setup_filesys
-fi
+# # Improve performance when using NPM and Git
+# setup_filesys
+# fi
 
 
-#######################################################
-# HOMEBREW
-#######################################################
+# #######################################################
+# # HOMEBREW
+# #######################################################
 
-if is_mac; then
-print_title "Homebrew"
+# if is_mac; then
+# print_title "Homebrew"
 
-# get utility scripts
-source ./macos/brew.sh
+# # get utility scripts
+# source ./macos/brew.sh
 
-# Install Homebrew Package Manager
-install_brew
+# # Install Homebrew Package Manager
+# install_brew
 
-# Install Homebrew Packages
-brew_bundle
-fi
+# # Install Homebrew Packages
+# brew_bundle
+# fi
 
-#######################################################
-# XCODE
-#######################################################
+# #######################################################
+# # XCODE
+# #######################################################
 
-if is_mac; then
-print_title "XCode"
+# if is_mac; then
+# print_title "XCode"
 
-# get utility scripts
-source ./macos/xcode.sh
+# # get utility scripts
+# source ./macos/xcode.sh
 
-# Setup xcode
-setup_xcode
-fi
+# # Setup xcode
+# setup_xcode
+# fi
 
-#######################################################
-# Extensions
-#######################################################
+# #######################################################
+# # Extensions
+# #######################################################
 
-if is_mac; then
-print_title "Extensions"
+# if is_mac; then
+# print_title "Extensions"
 
-# get utility scripts
-source ./macos/extensions.sh
+# # get utility scripts
+# source ./macos/extensions.sh
 
-setup_default_programs
-fi
+# setup_default_programs
+# fi
 
 
-#######################################################
-# Terminal
-#######################################################
+# #######################################################
+# # Terminal
+# #######################################################
 
-print_title "Terminal"
+# print_title "Terminal"
 
-# get utility scripts
-source ./scripts/fish.sh
-source ./scripts/tpm.sh
+# # get utility scripts
+# source ./scripts/fish.sh
+# source ./scripts/tpm.sh
 
-if is_mac; then
-source ./macos/terminal.sh
-fi
+# if is_mac; then
+# source ./macos/terminal.sh
+# fi
 
-# Setup Fish shell as default shell
-setup_fish
+# # Setup Fish shell as default shell
+# setup_fish
 
-# Install Fisher
-install_omf
+# # Install Fisher
+# install_omf
 
-# install Tmux package manager
-install_tpm
+# # install Tmux package manager
+# install_tpm
 
-if is_mac; then
-# setup Mac Terminal
-setup_mac_terminal
+# if is_mac; then
+# # setup Mac Terminal
+# setup_mac_terminal
 
-# setup iTerm2
-setup_iterm2
-fi
+# # setup iTerm2
+# setup_iterm2
+# fi
 
-#######################################################
-# Node, Ruby, Python, Perl
-#######################################################
+# #######################################################
+# # Node, Ruby, Python, Perl
+# #######################################################
 
-if is_mac; then
-print_title "Node, Ruby, Python, Perl"
+# if is_mac; then
+# print_title "Node, Ruby, Python, Perl"
 
-# get utility scripts
-source ./scripts/env-utils.sh
+# # get utility scripts
+# source ./scripts/env-utils.sh
 
-install_env pyenv
-install_env nodenv
-install_env rbenv
-# install_env plenv # currently broken https://github.com/tokuhirom/plenv/issues/147
-fi
+# install_env pyenv
+# install_env nodenv
+# install_env rbenv
+# # install_env plenv # currently broken https://github.com/tokuhirom/plenv/issues/147
+# fi
 
-#######################################################
-# General UI/UX
-#######################################################
+# #######################################################
+# # General UI/UX
+# #######################################################
 
-if is_mac; then
-print_title "General UI/UX"
+# if is_mac; then
+# print_title "General UI/UX"
 
-# get utility scripts
-source ./macos/ux.sh
+# # get utility scripts
+# source ./macos/ux.sh
 
-setup_mac_ux
-fi
+# setup_mac_ux
+# fi
 
 
-#######################################################
-# SSD-specific tweaks
-#######################################################
+# #######################################################
+# # SSD-specific tweaks
+# #######################################################
 
-if is_mac; then
-print_title "SSD"
+# if is_mac; then
+# print_title "SSD"
 
-# get utility scripts
-source ./macos/ssd.sh
+# # get utility scripts
+# source ./macos/ssd.sh
 
-setup_mac_ssd
-fi
+# setup_mac_ssd
+# fi
 
-#######################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input
-#######################################################
+# #######################################################
+# # Trackpad, mouse, keyboard, Bluetooth accessories, and input
+# #######################################################
 
-if is_mac; then
-print_title "Inputs & Bluetooth"
+# if is_mac; then
+# print_title "Inputs & Bluetooth"
 
-# get utility scripts
-source ./macos/inputs.sh
+# # get utility scripts
+# source ./macos/inputs.sh
 
-setup_mac_inputs
-fi
+# setup_mac_inputs
+# fi
 
-#######################################################
-# Screen
-#######################################################
+# #######################################################
+# # Screen
+# #######################################################
 
-if is_mac; then
-print_title "Screen"
+# if is_mac; then
+# print_title "Screen"
 
-# get utility scripts
-source ./macos/screen.sh
+# # get utility scripts
+# source ./macos/screen.sh
 
-setup_mac_screen
-fi
+# setup_mac_screen
+# fi
 
 
-#######################################################
-# Finder
-#######################################################
+# #######################################################
+# # Finder
+# #######################################################
 
-if is_mac; then
-print_title "Finder"
+# if is_mac; then
+# print_title "Finder"
 
-# get utility scripts
-source ./macos/finder.sh
+# # get utility scripts
+# source ./macos/finder.sh
 
-setup_mac_finder
-fi
+# setup_mac_finder
+# fi
 
 
-#######################################################
-# Safari
-#######################################################
+# #######################################################
+# # Safari
+# #######################################################
 
-if is_mac; then
-print_title "Safari"
+# if is_mac; then
+# print_title "Safari"
 
-# get utility scripts
-source ./macos/safari.sh
+# # get utility scripts
+# source ./macos/safari.sh
 
-setup_safari
-fi
+# setup_safari
+# fi
 
 
-#######################################################
-# Mail
-#######################################################
+# #######################################################
+# # Mail
+# #######################################################
 
-if is_mac; then
-print_title "Mail"
+# if is_mac; then
+# print_title "Mail"
 
-# get utility scripts
-source ./macos/mail.sh
+# # get utility scripts
+# source ./macos/mail.sh
 
-setup_mail
-fi
+# setup_mail
+# fi
 
 
-#######################################################
-# Spotlight
-#######################################################
+# #######################################################
+# # Spotlight
+# #######################################################
 
-if is_mac; then
-print_title "Spotlight"
+# if is_mac; then
+# print_title "Spotlight"
 
-# get utility scripts
-source ./macos/spotlight.sh
+# # get utility scripts
+# source ./macos/spotlight.sh
 
-setup_spotlight
-fi
+# setup_spotlight
+# fi
 
 
-#######################################################
-# Spotlight
-#######################################################
+# #######################################################
+# # Time Machine
+# #######################################################
 
-if is_mac; then
-print_title "Spotlight"
+# if is_mac; then
+# print_title "Time Machine"
 
-# get utility scripts
-source ./macos/spotlight.sh
+# # get utility scripts
+# source ./macos/time_machine.sh
 
-setup_spotlight
-fi
+# setup_time_machine
+# fi
 
-#######################################################
-# Time Machine
-#######################################################
+# #######################################################
+# # Activity Monitor
+# #######################################################
 
-if is_mac; then
-print_title "Time Machine"
+# if is_mac; then
+# print_title "Activity Monitor"
 
-# get utility scripts
-source ./macos/time_machine.sh
+# # get utility scripts
+# source ./macos/activity_monitor.sh
 
-setup_time_machine
-fi
+# setup_activity_monitor
+# fi
 
-#######################################################
-# Activity Monitor
-#######################################################
 
-if is_mac; then
-print_title "Activity Monitor"
+# #######################################################
+# # Address Book, Dashboard, iCal, TextEdit, and Disk Utility
+# #######################################################
 
-# get utility scripts
-source ./macos/activity_monitor.sh
+# if is_mac; then
+# print_title "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 
-setup_activity_monitor
-fi
+# # get utility scripts
+# source ./macos/other_apps.sh
 
+# setup_other_apps
+# fi
 
-#######################################################
-# Address Book, Dashboard, iCal, TextEdit, and Disk Utility
-#######################################################
 
-if is_mac; then
-print_title "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
+# #######################################################
+# # App Store
+# #######################################################
 
-# get utility scripts
-source ./macos/other_apps.sh
+# if is_mac; then
+# print_title "App Store"
 
-setup_other_apps
-fi
+# # get utility scripts
+# source ./macos/app_store.sh
 
+# setup_app_store
+# fi
 
-#######################################################
-# App Store
-#######################################################
 
-if is_mac; then
-print_title "App Store"
+# #######################################################
+# # Google Chrome
+# #######################################################
 
-# get utility scripts
-source ./macos/app_store.sh
+# if is_mac; then
+# print_title "Google Chrome"
 
-setup_app_store
-fi
+# # get utility scripts
+# source ./macos/google_chrome.sh
 
+# setup_google_chrome
+# fi
 
-#######################################################
-# Google Chrome
-#######################################################
 
-if is_mac; then
-print_title "Google Chrome"
+# #######################################################
+# # Transmission
+# #######################################################
 
-# get utility scripts
-source ./macos/google_chrome.sh
+# if is_mac; then
+# print_title "Transmission"
 
-setup_google_chrome
-fi
+# # get utility scripts
+# source ./macos/transmission.sh
 
+# setup_transmission
+# fi
 
-#######################################################
-# Transmission
-#######################################################
 
-if is_mac; then
-print_title "Transmission"
+# #######################################################
+# # Slack
+# #######################################################
 
-# get utility scripts
-source ./macos/transmission.sh
+# if is_mac; then
+# print_title "Slack"
 
-setup_transmission
-fi
-
-
-#######################################################
-# Slack
-#######################################################
-
-if is_mac; then
-print_title "Slack"
-
-# get utility scripts
-source ./macos/slack.command
-print_success "Set dark theme for slack"
-fi
+# # get utility scripts
+# source ./macos/slack.command
+# print_success "Set dark theme for slack"
+# fi
 
 
 #######################################################
@@ -519,22 +506,8 @@ setup_mac_dock
 # Setup Dock apps and other folders
 DOCK_APPS=(
   "Google Chrome"
-  "Mailplane"
-  "Trello"
-  "TogglDesktop"
-  "Quip"
-  "Tweetbot"
-  "Messenger"
-  "WhatsApp"
-  "Messages"
-  "Skype"
-  "Slack"
-  "Sketch"
+  "Microsoft Outlook"
   "Visual Studio Code"
-  "iTerm"
-  "Sourcetree"
-  "Dashlane"
-  "Authy Desktop"
   "Spotify"
 )
 
@@ -561,38 +534,38 @@ setup_dock_folders "$DOCK_FOLDERS_CSV"
 clear_icon_cache
 fi
 
-#######################################################
-# RESTART APPS
-#######################################################
+# #######################################################
+# # RESTART APPS
+# #######################################################
 
-if is_mac; then
-print_title "Cleanup"
+# if is_mac; then
+# print_title "Cleanup"
 
-for app in "Activity Monitor" \
-	"Address Book" \
-	"Calendar" \
-	"cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Google Chrome Canary" \
-	"Google Chrome" \
-	"Mail" \
-	"Messages" \
-	"Photos" \
-	"Safari" \
-	"SizeUp" \
-	"Spectacle" \
-	"SystemUIServer" \
-	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
-	"iCal"; do
-	killall -KILL "$app" &> /dev/null || true
-done
+# for app in "Activity Monitor" \
+# 	"Address Book" \
+# 	"Calendar" \
+# 	"cfprefsd" \
+# 	"Contacts" \
+# 	"Dock" \
+# 	"Finder" \
+# 	"Google Chrome Canary" \
+# 	"Google Chrome" \
+# 	"Mail" \
+# 	"Messages" \
+# 	"Photos" \
+# 	"Safari" \
+# 	"SizeUp" \
+# 	"Spectacle" \
+# 	"SystemUIServer" \
+# 	"Transmission" \
+# 	"Tweetbot" \
+# 	"Twitter" \
+# 	"iCal"; do
+# 	killall -KILL "$app" &> /dev/null || true
+# done
 
-print_success "Killed affected apps"
-fi
+# print_success "Killed affected apps"
+# fi
 
 #######################################################
 # DONE

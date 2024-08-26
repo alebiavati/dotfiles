@@ -2,8 +2,8 @@
 
 setup_mac_screen() {
 
-  # Require password immediately after sleep or screen saver begins
-  profiles -I -F ./assets/askforpassworddelay.mobileconfig
+  # # Require password immediately after sleep or screen saver begins
+  # profiles -I -F ./assets/askforpassworddelay.mobileconfig
 
   # Make sure that the code folder exists
   if [ ! -d $SCREENSHOTS_DIR ]; then
