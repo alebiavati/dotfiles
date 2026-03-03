@@ -29,3 +29,10 @@ source ~/.config/fish/env.fish
 source ~/.config/fish/heroku.fish
 source ~/.config/fish/android.fish
 
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
+# OpenClaw Completion
+source "/Users/$HOME/.openclaw/completions/openclaw.fish"

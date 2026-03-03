@@ -185,14 +185,6 @@
                     },
                     "ignore": false,
                     "treat_as_built_in_keyboard": true
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 671,
-                        "vendor_id": 1452
-                    },
-                    "treat_as_built_in_keyboard": true
                 }
             ],
             "name": "Default profile",

@@ -10,3 +10,6 @@ alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
 # reload config
 alias reload="source ~/.config/fish/config.fish"
+
+# Projects
+alias clinibase="cd $HOME/code/clinibase/clinibase-devkit"

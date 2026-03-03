@@ -117,27 +117,29 @@ source ./scripts/utils.sh
 # # DOTFILES
 # #######################################################
 
-# print_title "Dotfiles"
+print_title "Dotfiles"
 
-# # get utility scripts
-# source ./scripts/symlink.sh
+# get utility scripts
+source ./scripts/symlink.sh
 
-# # Symlink all necessary files
-# FILES_TO_SYMLINK=(
-#   .gitattributes
-#   .gitconfig
-#   .gitignore
-#   .tmux
-#   .tmux.conf
-#   .vim
-#   .vimrc
-#   bin
-#   .config/fish
-#   .config/starship.toml
-#   .huskyrc
-# )
+# Symlink all necessary files
+FILES_TO_SYMLINK=(
+  # .gitattributes
+  # .gitconfig
+  # .gitignore
+  # .tmux
+  # .tmux.conf
+  # .vim
+  # .vimrc
+  # bin
+  # .config/fish
+  # .config/starship.toml
+  # .config/omf
+  .config/karabiner
+  .config/husky
+)
 
-# symlink_dotfiles "${FILES_TO_SYMLINK[*]}"
+symlink_dotfiles "${FILES_TO_SYMLINK[*]}"
 
 # # Adding .hushlogin to silence terminal login
 # touch $HOME/.hushlogin
@@ -491,48 +493,48 @@ source ./scripts/utils.sh
 # fi
 
 
-#######################################################
-# Dock
-#######################################################
+# #######################################################
+# # Dock
+# #######################################################
 
-if is_mac; then
-print_title "Dock"
+# if is_mac; then
+# print_title "Dock"
 
-# get utility scripts
-source ./macos/dock.sh
+# # get utility scripts
+# source ./macos/dock.sh
 
-setup_mac_dock
+# setup_mac_dock
 
-# Setup Dock apps and other folders
-DOCK_APPS=(
-  "Google Chrome"
-  "Microsoft Outlook"
-  "Visual Studio Code"
-  "Spotify"
-)
+# # Setup Dock apps and other folders
+# DOCK_APPS=(
+#   "Google Chrome"
+#   "Microsoft Outlook"
+#   "Visual Studio Code"
+#   "Spotify"
+# )
 
-# Folder view options: "path|arrangement|displayas|showas"
-#  - arrangement: 1 (sort by name), 2 (sort by date added)
-#  - displayas: 0 (stack), 1 (folder)
-#  - showas: 0 (grid), 1 (fan), 2 (list)
-DOCK_FOLDERS=(
-  "/Applications"
-  "$SCREENSHOTS_DIR|2|0|1"
-  "$HOME/Downloads|2|0|1"
-)
+# # Folder view options: "path|arrangement|displayas|showas"
+# #  - arrangement: 1 (sort by name), 2 (sort by date added)
+# #  - displayas: 0 (stack), 1 (folder)
+# #  - showas: 0 (grid), 1 (fan), 2 (list)
+# DOCK_FOLDERS=(
+#   "/Applications"
+#   "$SCREENSHOTS_DIR|2|0|1"
+#   "$HOME/Downloads|2|0|1"
+# )
 
-OLDIFS=$IFS
-IFS=","
-DOCK_APPS_CSV="${DOCK_APPS[*]}"
-DOCK_FOLDERS_CSV="${DOCK_FOLDERS[*]}"
-IFS=$OLDIFS
+# OLDIFS=$IFS
+# IFS=","
+# DOCK_APPS_CSV="${DOCK_APPS[*]}"
+# DOCK_FOLDERS_CSV="${DOCK_FOLDERS[*]}"
+# IFS=$OLDIFS
 
-setup_dock_apps "$DOCK_APPS_CSV"
-setup_dock_folders "$DOCK_FOLDERS_CSV"
+# setup_dock_apps "$DOCK_APPS_CSV"
+# setup_dock_folders "$DOCK_FOLDERS_CSV"
 
-# Clear icon cache
-clear_icon_cache
-fi
+# # Clear icon cache
+# clear_icon_cache
+# fi
 
 # #######################################################
 # # RESTART APPS

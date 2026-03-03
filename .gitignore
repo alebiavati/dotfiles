@@ -27,3 +27,5 @@ Thumbs.db
 shilocation
 /test.sh
 /test-setup.sh
+/test-*
+.ssh

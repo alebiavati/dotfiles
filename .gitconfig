@@ -3,7 +3,7 @@
 	fpush = push --force
 	s = status
 	sclone = clone --depth=1
-	amend = commit --amend --all
+	amend = commit --amend --no-edit
 	undocommit = reset HEAD~
 	hreset = reset --hard
 	co = checkout
@@ -20,6 +20,7 @@
 	reup = rebase-update # depot_tools specific
 	git = !exec git
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	fame = !python -m gitfame
 
 [core]
 	excludesfile = ~/.gitignore
